@@ -5,6 +5,7 @@ import net.minecraft.data.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
@@ -20,85 +21,39 @@ public class ModRecipeProvider extends RecipeProvider {
         super.buildCraftingRecipes(consumer);
 
         /** Hammers **/
-        ShapedRecipeBuilder.shaped(ModItems.IRON_HAMMER.get())
-                .pattern("xxx")
-                .pattern("xsx")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_IRON)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.IRON_INGOT))
-                .save(consumer);
-
-        ShapedRecipeBuilder.shaped(ModItems.GOLD_HAMMER.get())
-                .pattern("xxx")
-                .pattern("xsx")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_GOLD)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.GOLD_INGOT))
-                .save(consumer);
-
-        ShapedRecipeBuilder.shaped(ModItems.DIAMOND_HAMMER.get())
-                .pattern("xxx")
-                .pattern("xsx")
-                .pattern(" s ")
-                .define('x', Tags.Items.GEMS_DIAMOND)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.DIAMOND))
-                .save(consumer);
-
-        ShapedRecipeBuilder.shaped(ModItems.NETHERITE_HAMMER.get())
-                .pattern("xxx")
-                .pattern("xsx")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_NETHERITE)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.NETHERITE_INGOT))
-                .save(consumer);
+        createHammerRecipe(ModItems.IRON_HAMMER.get(), Tags.Items.INGOTS_IRON, consumer);
+        createHammerRecipe(ModItems.GOLD_HAMMER.get(), Tags.Items.INGOTS_GOLD, consumer);
+        createHammerRecipe(ModItems.DIAMOND_HAMMER.get(), Tags.Items.GEMS_DIAMOND, consumer);
+        createHammerRecipe(ModItems.NETHERITE_HAMMER.get(), Tags.Items.INGOTS_NETHERITE, consumer);
 
         /** Excavators **/
-        ShapedRecipeBuilder.shaped(ModItems.IRON_EXCAVATOR.get())
-                .pattern("xxx")
-                .pattern(" s ")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_IRON)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.IRON_INGOT))
-                .save(consumer);
+        createExcavatorRecipe(ModItems.IRON_EXCAVATOR.get(), Tags.Items.INGOTS_IRON, consumer);
+        createExcavatorRecipe(ModItems.GOLD_EXCAVATOR.get(), Tags.Items.INGOTS_GOLD, consumer);
+        createExcavatorRecipe(ModItems.DIAMOND_EXCAVATOR.get(), Tags.Items.GEMS_DIAMOND, consumer);
+        createExcavatorRecipe(ModItems.NETHERITE_EXCAVATOR.get(), Tags.Items.INGOTS_NETHERITE, consumer);
+    }
 
-        ShapedRecipeBuilder.shaped(ModItems.GOLD_EXCAVATOR.get())
+    private void createHammerRecipe(Item output, Tags.IOptionalNamedTag material, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output)
                 .pattern("xxx")
+                .pattern("xsx")
                 .pattern(" s ")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_GOLD)
+                .define('x', material)
                 .define('s', Items.STICK)
                 .group("hammers")
-                .unlockedBy("has_item", has(Items.GOLD_INGOT))
+                .unlockedBy("has_item", has(material))
                 .save(consumer);
+    }
 
-        ShapedRecipeBuilder.shaped(ModItems.DIAMOND_EXCAVATOR.get())
-                .pattern("xxx")
-                .pattern(" s ")
-                .pattern(" s ")
-                .define('x', Tags.Items.GEMS_DIAMOND)
+    private void createExcavatorRecipe(Item output, Tags.IOptionalNamedTag material, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output)
+                .pattern(" xx")
+                .pattern(" sx")
+                .pattern("s  ")
+                .define('x', material)
                 .define('s', Items.STICK)
                 .group("hammers")
-                .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
-                .save(consumer);
-
-        ShapedRecipeBuilder.shaped(ModItems.NETHERITE_EXCAVATOR.get())
-                .pattern("xxx")
-                .pattern(" s ")
-                .pattern(" s ")
-                .define('x', Tags.Items.INGOTS_NETHERITE)
-                .define('s', Items.STICK)
-                .group("hammers")
-                .unlockedBy("has_item", has(Items.NETHERITE_INGOT))
+                .unlockedBy("has_item", has(material))
                 .save(consumer);
     }
 }
