@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hammers",
+  "pattern": [
+    "xxx",
+    "xsx",
+    " s "
+  ],
+  "key": {
+    "x": {
+      "tag": "forge:ingots/gold"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "androminingtools:gold_hammer"
+  }
+}

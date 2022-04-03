@@ -1,0 +1,11 @@
+{
+  "item.androminingtools.diamond_excavator": "Diamond Excavator",
+  "item.androminingtools.diamond_hammer": "Diamond Hammer",
+  "item.androminingtools.gold_excavator": "Gold Excavator",
+  "item.androminingtools.gold_hammer": "Gold Hammer",
+  "item.androminingtools.iron_excavator": "Iron Excavator",
+  "item.androminingtools.iron_hammer": "Iron Hammer",
+  "item.androminingtools.netherite_excavator": "Netherite Excavator",
+  "item.androminingtools.netherite_hammer": "Netherite Hammer",
+  "itemGroup.androminingtools_group": "Andro Mining Tools"
+}
